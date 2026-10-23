@@ -1,9 +1,10 @@
+
 name: OLX Telegram Bot
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: "*/15 * * * *"
+    - cron: "0 * * * *"
 
 jobs:
   run-bot:
@@ -23,4 +24,6 @@ jobs:
       - name: Run Telegram bot
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}
+          TELEGRAM_ADMIN_ID: ${{ secrets.TELEGRAM_ADMIN_ID }}
         run: python bot.py
