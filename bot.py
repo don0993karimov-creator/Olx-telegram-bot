@@ -17,18 +17,20 @@ async def start(
     update: Update,
     context: ContextTypes.DEFAULT_TYPE,
 ) -> None:
-    await update.message.reply_text(
-        "Бот OLX → Telegram запущен! Напишите /help."
-    )
+    if update.message:
+        await update.message.reply_text(
+            "Бот OLX → Telegram запущен! Напишите /help."
+        )
 
 
 async def help_command(
     update: Update,
     context: ContextTypes.DEFAULT_TYPE,
 ) -> None:
-    await update.message.reply_text(
-        "Я готов к настройке поиска квартир на OLX в Ташкенте."
-    )
+    if update.message:
+        await update.message.reply_text(
+            "Я готов к настройке поиска квартир на OLX в Ташкенте."
+        )
 
 
 def main() -> None:
@@ -49,3 +51,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
