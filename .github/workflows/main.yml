@@ -1,4 +1,3 @@
-
 name: OLX Telegram Bot
 
 on:
@@ -21,9 +20,10 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Run Telegram bot
+      - name: Check configuration
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}
           TELEGRAM_ADMIN_ID: ${{ secrets.TELEGRAM_ADMIN_ID }}
-        run: python bot.py
+        run: |
+          python -c "import os; assert os.getenv('TELEGRAM_BOT_TOKEN'), 'Нет TELEGRAM_BOT_TOKEN'; assert os.getenv('TELEGRAM_CHANNEL_ID'), 'Нет TELEGRAM_CHANNEL_ID'; assert os.getenv('TELEGRAM_ADMIN_ID'), 'Нет TELEGRAM_ADMIN_ID'; print('Все три настройки найдены')"
