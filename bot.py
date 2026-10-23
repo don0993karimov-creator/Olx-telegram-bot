@@ -29,8 +29,7 @@ async def help_command(
 ) -> None:
     if update.message:
         await update.message.reply_text(
-            "Бот готов. Команда /test_channel проверяет отправку "
-            "тестового сообщения в канал."
+            "Бот отвечает на команды. Поиск OLX пока настраивается."
         )
 
 
@@ -59,29 +58,22 @@ async def test_channel(
     try:
         await context.bot.send_message(
             chat_id=channel_id,
-            text=(
-                "✅ Тест OLX → Telegram прошёл успешно!\n\n"
-                "Бот может отправлять сообщения в канал."
-            ),
+            text="Тест: бот может отправлять сообщения в канал."
         )
         await update.message.reply_text(
-            "Готово! Проверьте канал — тестовое сообщение отправлено."
+            "Тестовое сообщение отправлено. Проверьте канал."
         )
     except Exception:
         logger.exception("Ошибка отправки тестового сообщения")
         await update.message.reply_text(
-            "Не удалось отправить сообщение. Проверьте права бота "
-            "и значение TELEGRAM_CHANNEL_ID в GitHub Secrets."
+            "Ошибка отправки. Проверьте права бота и настройки канала."
         )
 
 
 def main() -> None:
     token = os.getenv("TELEGRAM_BOT_TOKEN")
-
     if not token:
-        raise RuntimeError(
-            "Не задан секрет TELEGRAM_BOT_TOKEN в GitHub."
-        )
+        raise RuntimeError("Не задан TELEGRAM_BOT_TOKEN.")
 
     app = Application.builder().token(token).build()
     app.add_handler(CommandHandler("start", start))
