@@ -1,13 +1,13 @@
+
 name: OLX Telegram Bot
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "0 * * * *"
 
 jobs:
   run-bot:
     runs-on: ubuntu-latest
+
     steps:
       - name: Get repository code
         uses: actions/checkout@v4
@@ -27,6 +27,10 @@ jobs:
           TELEGRAM_ADMIN_ID: ${{ secrets.TELEGRAM_ADMIN_ID }}
         run: |
           python -c "import os; assert os.getenv('TELEGRAM_BOT_TOKEN'), 'Нет TELEGRAM_BOT_TOKEN'; assert os.getenv('TELEGRAM_CHANNEL_ID'), 'Нет TELEGRAM_CHANNEL_ID'; assert os.getenv('TELEGRAM_ADMIN_ID'), 'Нет TELEGRAM_ADMIN_ID'; print('Все настройки найдены')"
-          
+
       - name: Run Telegram bot
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}
+          TELEGRAM_ADMIN_ID: ${{ secrets.TELEGRAM_ADMIN_ID }}
         run: python bot.py
