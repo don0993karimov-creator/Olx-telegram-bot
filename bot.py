@@ -123,11 +123,24 @@ async def check_ads(update: Update, context: ContextTypes.DEFAULT_TYPE):
             )
             return
         for ad in new_ads[:10]:
-            message = (
-                "Новое объявление — проверьте перед публикацией\n\n"
-                f"{ad['title']}\n\n"
-                f"{ad['text'][:700]}\n\n"
-                f"{ad['url']}"
+        message = (
+                f"ID: {ad['url'].rstrip('/').split('-')[-1]}\n\n"
+                f"🏠 {ad['title']}\n\n"
+                f"Адрес: #\n"
+                f"Ориентир: -\n\n"
+                f"Комнат —  / Площадь — м²\n"
+                f"Этаж —  / Этажность —\n\n"
+                f"▫️С ремонтом\n"
+                f"▫️Мебель остаётся\n"
+                f"▫️С техникой\n"
+                f"▫️Рядом метро\n"
+                f"▫️Санузел раздельный\n"
+                f"▫️Готова к проживанию\n\n"
+                f"Цена: уточняйте в объявлении\n\n"
+                f"Подробнее: {ad['url']}\n\n"
+                f"За подробностями:\n\n"
+                f"📞 +998990708048\n"
+                f"👤 @DaniyarKarimov09"
             )
             await update.effective_message.reply_text(message)
         await update.effective_message.reply_text(
