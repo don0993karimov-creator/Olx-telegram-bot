@@ -16,7 +16,7 @@ logger = logging.getLogger(__name__)
 BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "")
 CHANNEL_ID = os.getenv("TELEGRAM_CHANNEL_ID", "")
 ADMIN_ID = os.getenv("TELEGRAM_ADMIN_ID", "")
-OLX_URL = "https://www.olx.uz/nedvizhimost/kvartiry/?currency=UZB"
+OLX_URL = "https://www.olx.uz/nedvizhimost/kvartiry/?currency=UYE"
 DB_FILE = "seen_ads.sqlite3"
 def init_db():
     with sqlite3.connect(DB_FILE) as db:
