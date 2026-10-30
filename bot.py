@@ -123,7 +123,7 @@ async def check_ads(update: Update, context: ContextTypes.DEFAULT_TYPE):
             )
             return
         for ad in new_ads[:10]:
-         message = (
+          message = (
                 f"ID: {ad['url'].rstrip('/').split('-')[-1]}\n\n"
                 f"🏠 {ad['title']}\n\n"
                 f"Адрес: #\n"
